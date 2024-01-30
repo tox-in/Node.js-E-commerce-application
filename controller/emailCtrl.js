@@ -12,8 +12,17 @@ const sendEmail = asyncHandler(async (data, req, res) => {
         }
     });
 
-    let info = await transporter.sendMail({})
-    from: '"gura-online" "<gura-online@gmail.com>"';
-    to: data.to;
-    subject: data.subject
-})
+    let info = await transporter.sendMail({
+    from: '"gura-online" "<gura-online@gmail.com>"',
+    to: data.to,
+    subject: data.subject,
+    text: data.text,
+    html: data.html,
+});
+
+console.log("Message sent: %s", info.messageId);
+
+console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+});
+//3:57:26
